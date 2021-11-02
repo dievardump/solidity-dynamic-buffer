@@ -13,7 +13,7 @@ describe('DynamicBuffer', () => {
 
     describe('Dynamic buffer', async function () {
         it('try', async function () {
-            const data = await buffer.allocate(20, 7000);
+            const data = await buffer.allocate(20, 8000);
             console.log(`${data.length} bytes`);
         });
     });

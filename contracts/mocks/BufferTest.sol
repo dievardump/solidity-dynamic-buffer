@@ -1,29 +1,25 @@
-pragma solidity 0.8.9;
+pragma solidity >=0.8.0;
 
 import '../DynamicBuffer.sol';
 
 contract BufferTest {
-    function allocate(uint256 size, uint256 howManyLoops)
+    function allocate(uint256, uint256 howManyLoops)
         public
-        view
+        pure
         returns (string memory)
     {
         // 130 bytes * howManyLoops
-        (, bytes memory buffer) = DynamicBuffer.allocate(howManyLoops * 130);
+        (, bytes memory buffer) = DynamicBuffer.allocate(howManyLoops * 110);
 
         for (uint256 idx = 0; idx < howManyLoops; ++idx) {
             DynamicBuffer.appendBytes(
                 buffer,
                 abi.encodePacked(
-                    "%3Cmarker id='dot",
-                    '3',
-                    "' viewBox='-1 -1 2 2' markerWidth='",
-                    'a',
-                    "' markerHeight='",
-                    'a',
-                    "'%3E%3Ccircle r='1' fill='%23",
-                    'colorMap',
-                    "'/%3E%3C/marker%3E"
+                    'This is a test',
+                    ' to see ',
+                    ' how many calls can be done ',
+                    ' using abi.encodePacked. ',
+                    ' This string is 110 bytes long.'
                 )
             );
         }
